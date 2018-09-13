@@ -70,16 +70,8 @@ AddEventHandler('esx_lapdance:lapdance', function()
 			SetEntityCoords(GetPlayerPed(-1), 116.88, -1295.04, 28.42)
 			SetEntityHeading(SpawnObject, 303.19)
 			FreezeEntityPosition(SpawnObject, true)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 114.94, -1296.0, 28.42, 210.64, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 115.85, -1297.57, 28.42, 210.94, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 116.82, -1299.15, 28.17, 210.93, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 117.66, -1300.48, 28.17, 210.93, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 118.29, -1301.43, 28.42, 211.14, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
+			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 118.29, -1301.43, 28.42, 1.0, 0, 0, 786603, 1.0)
+			Citizen.Wait(5000)
 			FreezeEntityPosition(SpawnObject, false)
 			TaskGoToCoordAnyMeans(SpawnObject, 118.0, -1300.3, 28.17, 174.93, 0, 0, 0, 0xbf800000)
 			Citizen.Wait(2050)
@@ -120,36 +112,41 @@ Citizen.CreateThread(function()
 
 	Citizen.Wait(0)
 	
+		if isInLapdance then
+			SetFollowPedCamViewMode(4)
+		else
+		-- nothing
+		end
+	end
+end)
+
+Citizen.CreateThread(function()
+
+	while true do
+
+	Citizen.Wait(0)
+	
 		local coords = GetEntityCoords(GetPlayerPed(-1))
 		if GetDistanceBetweenCoords(coords, 118.75, -1301.97, 28.42, true) < 1.5 and isInLapdance then
 		
-			local dict = "rcmjosh2"
+			local dict = "mini@strip_club@lap_dance_2g@ld_2g_reach"
 			RequestAnimDict(dict)
 				while not HasAnimDictLoaded(dict) do
 					Citizen.Wait(100)
 				end
 			SetEntityCoords(GetPlayerPed(-1), 118.92, -1302.55, 27.87)
 			FreezeEntityPosition(GetPlayerPed(-1), true)
-			SetEntityHeading(GetPlayerPed(-1), 205.0)
-			TaskPlayAnim(GetPlayerPed(-1), dict, "josh_sitting_loop", 8.0, -8.0, -1, 0, 0, false, false, false)
+			SetEntityHeading(GetPlayerPed(-1), 39.0)
+			TaskPlayAnim(GetPlayerPed(-1), dict, "ld_2g_sit_idle", 8.0, -8.0, -1, 0, 0, false, false, false)
 			repeat
-			TaskPlayAnim(GetPlayerPed(-1), dict, "josh_sitting_loop", 8.0, -8.0, -1, 0, 0, false, false, false)
-			Citizen.Wait(150)
+			TaskPlayAnim(GetPlayerPed(-1), dict, "ld_2g_sit_idle", 8.0, -8.0, -1, 0, 0, false, false, false)
+			Citizen.Wait(550)
 			until(isInLapdance == false)
 			FreezeEntityPosition(GetPlayerPed(-1), false)
 			SetEntityCoords(GetPlayerPed(-1), 118.75, -1301.99, 28.42)
 			Citizen.Wait(200)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 118.29, -1301.43, 28.42, 211.14, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 117.66, -1300.48, 28.17, 210.93, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 116.82, -1299.15, 28.17, 210.93, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 115.85, -1297.57, 28.42, 210.94, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 114.94, -1296.0, 28.42, 210.64, 0, 0, 0, 0xbf800000)
-			Citizen.Wait(1000)
-			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 117.48, -1294.82, 28.43, 210.64, 0, 0, 0, 0xbf800000)
+			TaskGoToCoordAnyMeans(GetPlayerPed(-1), 117.48, -1294.82, 28.43, 1.0, 0, 0, 786603, 1.0)
+			Citizen.Wait(5800)
 			TriggerEvent("malte-cinema:activate")
 			else
 		-- nothing
@@ -165,26 +162,12 @@ Citizen.CreateThread(function()
 			DisableControlAction(2, 257, true) -- Attack 2
 			DisableControlAction(2, 25, true) -- Aim
 			DisableControlAction(2, 263, true) -- Melee Attack 1
-			DisableControlAction(2, Keys['W'], true) -- Reload
-			DisableControlAction(2, Keys['A'], true) -- Open phone (not needed?)
-			DisableControlAction(2, Keys['S'], true) -- Jump
-			DisableControlAction(2, Keys['D'], true) -- Cover
+			DisableControlAction(2, Keys['W'], true) -- Gå fram
+			DisableControlAction(2, Keys['A'], true) -- Gå vänster
+			DisableControlAction(2, Keys['S'], true) -- Gå bak
+			DisableControlAction(2, Keys['D'], true) -- Gå höger
 		else
 			-- nothing
-		end
-	end
-end)
-
-Citizen.CreateThread(function()
-
-	while true do
-
-	Citizen.Wait(0)
-	
-		if isInLapdance then
-		--	SetFollowPedCamViewMode(4)
-		else
-		-- nothing
 		end
 	end
 end)
