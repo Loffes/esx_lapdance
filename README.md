@@ -5,8 +5,9 @@ Ett script för att kunna köpa en lapdance vid vanilla unicorn
 
  - [Malteser Cinema](https://github.com/malteserboi/malteser_cinema) krävs för att cinema läget ska fungera
  
- - [es_extended] (https://github.com/ESX-Org/es_extended) krävs för att scriptet ska fungera som det ska
-
+ 
+ - [es_extended](https://github.com/ESX-Org/es_extended) 
+ 
 ### Installation
 
  - Ladda ner alla scripts under krav
